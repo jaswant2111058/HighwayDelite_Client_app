@@ -4,7 +4,7 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 
     &__label {
         @include heading-5;
@@ -19,13 +19,20 @@
             @include body-2;
             width: 100%;
             padding: 14px;
-            border-radius: 8px;
-            border: 1px solid $border;
+            
+            border: 2px solid $border;
             outline: none;
+            background-color: transparent;
+            border-top: none;
+            border-right: none;
+            border-left: none;
         }
 
         &__input:focus {
             border: 2px solid $primary-blue;
+            border-top: none;
+            border-right: none;
+            border-left: none;
         }
 
         &__icon {

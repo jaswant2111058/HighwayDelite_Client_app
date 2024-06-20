@@ -2,14 +2,15 @@
 @import '../../font-styles.scss';
 
 .xen-interaction-btn {
-    padding: 14px 16px;
+    padding: 17px 16px;
     width: 100%;
-    margin-top: 24px;
+    margin-top: 15px;
     @include heading-4;
     border-radius: 12px;
     cursor: pointer;
     position: relative;
-    max-height: 48px;
+    max-height: 56px;
+    font-size: larger;
     &.dark {
         background-color: $primary-blue;
         color: $primary-white;

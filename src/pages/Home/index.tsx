@@ -1,7 +1,6 @@
 import { FC } from "react";
 import "./index.scss";
-import image1 from "../../assets/png/image1.png"
-import { SignInUiBtn, SignUPUiBtn } from "../../components/SigninUI";
+import { SignInUiBtn, SignUPUiBtn } from "../../components/SignUI";
 
 const Home: FC = () => {
 
@@ -12,21 +11,11 @@ const Home: FC = () => {
                 Illustrator which you can use
             </div>
             <div className="home-container">
-
                 <div className="home-container__right">
-
-                    <div className="home-container__right__btn">
-                        <SignUPUiBtn />
-                    </div>
-                    <img className="home-container__left__img" src={image1} />
-
+                    <SignUPUiBtn />
                 </div>
                 <div className="home-container__left">
-                    <div className="home-container__left__btn">
-                        <SignInUiBtn />
-                    </div>
-                    <img className="home-container__left__img" src={image1} />
-
+                    <SignInUiBtn />
                 </div>
             </div>
         </div>

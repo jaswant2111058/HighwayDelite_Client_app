@@ -5,6 +5,7 @@ import Icon from "./utils/icon";
 //router
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
+import SignUp from "./pages/SignUp";
 
 //pages
 const Home = lazy(() => import("./pages/Home"));
@@ -28,7 +29,7 @@ function App() {
         }
       >
         <Routes>
-          {/* <Route path="/*" element={<ProtectedLayout />} /> */}
+          <Route path="/*" element={<SignUp />} />
           <Route path="Home" element={<Home />} />
         </Routes>
       </Suspense>

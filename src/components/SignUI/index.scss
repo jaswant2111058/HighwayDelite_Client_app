@@ -1,0 +1,41 @@
+@import '../../font-styles.scss';
+@import '../../variables.scss';
+
+.btn-container {
+    grid-column: span 6;
+    position: relative;
+
+    &__img {
+        height: 35vw;
+        width: 35vw;
+    }
+
+    &__btn {
+        position: absolute;
+        right: 60px;
+        top: 45px;
+        cursor: pointer;
+    }
+}
+
+
+
+.Signin-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 85px;
+    height: 50px;
+
+    .sign {
+        @include heading-2;
+        color: $primary-blue;
+
+    }
+
+    .in {
+        @include heading-2;
+        color: $error;
+
+    }
+}
