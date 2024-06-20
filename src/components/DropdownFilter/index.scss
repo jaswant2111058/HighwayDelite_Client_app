@@ -1,0 +1,103 @@
+@import "../../variables.scss";
+@import "../../font-styles.scss";
+
+.MuiOutlinedInput-root {
+  border-radius: 8px !important;
+  width: 222px;
+  height: 48px;
+  border: 1px solid $gray-bg;
+  background: $sub-text;
+  padding: 12px;
+}
+.dropdown-main{
+  display: flex;
+  gap:10px
+}
+
+.card-container {
+  hr {
+    display: none;
+  }
+}
+
+.card-body-container {
+  padding: 10px 20px;
+}
+
+.filter {
+  display: flex;
+  gap: 10px;
+
+  .search-model-field {
+    .MuiOutlinedInput-root {
+      border-radius: 8px !important;
+      width: 425px;
+      height: 48px;
+      border: 1px solid $gray-bg;
+      background: $sub-text;
+
+    }
+
+    .searchIcon {
+      color: $dark-black;
+    }
+  }
+
+  .dropdown-filter-container {
+    .MuiOutlinedInput-root {
+      border-radius: 8px !important;
+      width: 222px;
+      height: 48px;
+      border: 1px solid $gray-bg;
+      background: $sub-text;
+      padding: 12px;
+    }
+  }
+
+  .custom-date-picker-container {
+    display: flex;
+    gap: 10px;
+  }
+
+  .selected-model-con {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 45%;
+
+    p {
+      margin-left: auto;
+      margin-right: 10px;
+    }
+
+    .select-model-btn {
+      cursor: pointer;
+      margin-left: auto;
+    }
+  }
+
+}
+
+
+.dropdown-container {
+  margin-left: 10px;
+}
+
+.dropdown {
+  width: 222px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+
+
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.MuiPaginationItem-root.Mui-selected {
+  background-color: $primary-blue !important;
+  color: white;
+}

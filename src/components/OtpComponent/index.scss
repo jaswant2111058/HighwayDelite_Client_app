@@ -1,0 +1,39 @@
+@import '../../variables.scss';
+@import '../../font-styles.scss';
+
+.otp__container {
+    width: 390px;
+
+    &-heading {
+        @include heading-5;
+        margin-bottom: 8px;
+        color: #1A1A1A;
+    }
+
+    &-inputs {
+        display: flex;
+        gap: 4px;
+
+        &-value {
+            height: 53px;
+            width: 53px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid $border;
+            background-color: $sub-text;
+        }
+
+    }
+
+    &-resend {
+        @include paragraph;
+        margin-top: 24px;
+        color: #000000;
+        strong{
+            @include heading-4;
+            cursor: pointer;
+            color: #000000;
+        }
+    }
+
+}

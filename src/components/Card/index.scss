@@ -1,0 +1,59 @@
+@import '../../variables.scss';
+@import '../../font-styles.scss';
+
+.card-container {
+    font-family: "Open Sans", sans-serif;
+    border-radius: 12px;
+    background-color: $primary-white;
+
+    hr {
+        width: 100%;
+        height: 1px;
+        background-color: $hr-color;
+        border: none;
+    }
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    padding-top: 20px;
+
+    .add-user-btn {
+        width: 145px;
+        margin-top: 0;
+    }
+
+    .header-title {
+        @include heading-4;
+        color: $primary-text-color;
+    }
+
+    .username {
+        .icon {
+            margin-right: 10px;
+        }
+
+        display: flex;
+        @include heading-2;
+        align-items: center;
+    }
+
+    .button {
+        border-radius: 12px;
+        background-color: $primary-blue;
+        @include heading-4;
+        color: $primary-white;
+        width: 139px;
+        height: 48px;
+        cursor: pointer;
+    }
+
+    .view-user-btn {
+        position: absolute;
+        top: 180px;
+        right: 40px;
+    }
+}

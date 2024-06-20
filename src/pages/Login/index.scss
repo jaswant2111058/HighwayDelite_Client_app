@@ -1,0 +1,130 @@
+@import '../../font-styles.scss';
+@import '../../variables.scss';
+
+.login-container {
+    background-image: url('../../assets/png/loginBg.png');
+    background-size: cover;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    place-items: center;
+    padding: 54px;
+
+    &__left {
+        grid-column: span 6;
+
+        &__company-text {
+            @include xen-font;
+            color: $primary-white;
+        }
+
+        &__company-desc {
+            margin-top: 70px;
+
+            h2 {
+                @include heading-1;
+                color: $primary-white;
+            }
+
+            p {
+                @include sub-heading-1;
+                color: $sub-text;
+            }
+        }
+    }
+
+    &__right {
+        grid-column: span 6;
+
+        .login-input__container {
+            background-color: $primary-white;
+            padding: 36px;
+            border-radius: 12px;
+
+            &--company-text {
+                @include xen-font2;
+                color: $primary-blue;
+
+            }
+
+            .login-box {
+
+                &__header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    span {
+                        margin-top: 4px;
+
+                        .xen__icon {
+                            &.back {
+                                cursor: pointer;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+
+                    &__heading {
+                        @include heading-2;
+                    }
+                }
+
+
+                &__desc {
+                    @include paragraph;
+                    margin-top: 12px;
+                    margin-bottom: 20px;
+                }
+
+                &__forgot-password {
+                    @include body-2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    cursor: pointer;
+                }
+            }
+
+            &.login {
+                .login-box {
+                    &__header {
+                        margin-top: 20px;
+                    }
+                }
+            }
+
+            &.create-password {
+                .login-box {
+                    .input-container {
+                        width: 390px;
+                    }
+                }
+            }
+
+            &.verification {
+                .login-box {
+                    .login-box__desc {
+                        &__email {
+                            margin-top: 4px;
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+
+                            span {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .forget-password-email {
+                        color: $dark-black;
+                        font-weight: 600;
+                    }
+
+                }
+            }
+        }
+    }
+}

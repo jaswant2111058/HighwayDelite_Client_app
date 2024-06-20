@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+@import '../../font-styles.scss';
+
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    background-color: $secondary-blue;
+
+    &__sidebar {
+        grid-column: span 2;
+    }
+
+    &__layout {
+        grid-column: span 10;
+    }
+}

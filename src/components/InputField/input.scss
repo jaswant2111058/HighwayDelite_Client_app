@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+@import '../../font-styles.scss';
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+
+    &__label {
+        @include heading-5;
+        margin-bottom: 4px;
+        color: #1A1A1A;
+    }
+
+    &__box {
+        position: relative;
+
+        &__input {
+            @include body-2;
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid $border;
+            outline: none;
+        }
+
+        &__input:focus {
+            border: 2px solid $primary-blue;
+        }
+
+        &__icon {
+            position: absolute;
+            top: 14px;
+            right: 10px;
+        }
+    }
+}

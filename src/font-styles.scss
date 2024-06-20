@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap");
+
+$fallbackFontsSeq: "Open Sans", sans-serif;
+$logoFontsSeq: "Comfortaa", sans-serif;
+
+//follow the figma text and use the mixins respectively
+@mixin xen-font {
+  font-family: $logoFontsSeq;
+  line-height: 72px;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+@mixin xen-font2 {
+  font-family: $logoFontsSeq;
+  line-height: 32px;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+@mixin heading-1 {
+  font-family: $fallbackFontsSeq;
+  line-height: 60px;
+  font-weight: 700;
+  font-size: 44px;
+}
+
+@mixin heading-2 {
+  font-family: $fallbackFontsSeq;
+  line-height: 28px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+@mixin heading-3 {
+  font-family: $fallbackFontsSeq;
+  line-height: 24px;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+@mixin heading-5 {
+  font-family: $fallbackFontsSeq;
+  line-height: 20px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@mixin heading-4 {
+  font-family: $fallbackFontsSeq;
+  line-height: 20px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+@mixin heading-6 {
+  font-family: $fallbackFontsSeq;
+  line-height: 18px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+@mixin body-2 {
+  font-family: $fallbackFontsSeq;
+  line-height: 20px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+@mixin body-3 {
+  font-family: $fallbackFontsSeq;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+@mixin sub-heading-1 {
+  font-family: $fallbackFontsSeq;
+  line-height: 40px;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+@mixin paragraph {
+  font-family: $fallbackFontsSeq;
+  line-height: 16px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@mixin stat-font {
+  font-family: $fallbackFontsSeq;
+  line-height: 34px;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+@mixin percentage {
+  font-family: $fallbackFontsSeq;
+  line-height: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+@mixin small-heads {
+  font-family: $fallbackFontsSeq;
+  line-height: 16px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+@mixin date-heading {
+  font-family: $fallbackFontsSeq;
+  line-height: 18px;
+  font-weight: 400;
+  font-size: 10px;
+}
+
+@mixin span-tag-heading {
+  font-family: $fallbackFontsSeq;
+  line-height: 16px;
+  font-weight: 600;
+  font-size: 10px;
+}

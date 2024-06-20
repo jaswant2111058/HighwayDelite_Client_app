@@ -1,0 +1,27 @@
+@import './variables.scss';
+@import './font-styles.scss';
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.success-container {
+    background-color: $success !important;
+    border: 1px solid $success !important;
+    color: $primary-white !important;
+}
+
+.error-container {
+    background-color: $error !important;
+    border: 1px solid $error !important;
+    color: $primary-white !important;
+}

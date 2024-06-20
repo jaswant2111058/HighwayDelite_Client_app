@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+@import '../../font-styles.scss';
+
+
+.success-container,
+.error-container {
+
+    .toast-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        p {
+            @include body-3;
+            color: white;
+        }
+    }
+}
