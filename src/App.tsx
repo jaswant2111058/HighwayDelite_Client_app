@@ -6,6 +6,7 @@ import Icon from "./utils/icon";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn"
 
 //pages
 const Home = lazy(() => import("./pages/Home"));
@@ -31,6 +32,7 @@ function App() {
         <Routes>
           <Route path="/*" element={<SignUp />} />
           <Route path="Home" element={<Home />} />
+          <Route path="signin" element={<SignIn />} />
         </Routes>
       </Suspense>
       {/* Toast */}

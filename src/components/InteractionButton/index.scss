@@ -18,15 +18,15 @@
     }
 
     &.light {
-        background-color: $primary-white;
+        background-color:transparent ;
         color: $primary-blue;
-        border: 1px solid $primary-blue;
+        border: 2px solid $primary-blue;
     }
 }
 
-.xen-interaction-btn:hover {
-    background-color: $button-hover
-}
+// .xen-interaction-btn:hover {
+//     background-color: $button-hover
+// }
 
 .otp__container-submit{
 
