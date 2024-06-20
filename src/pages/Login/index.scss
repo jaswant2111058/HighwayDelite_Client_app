@@ -2,11 +2,9 @@
 @import '../../variables.scss';
 
 .login-container {
-    background-image: url('../../assets/png/loginBg.png');
-    background-size: cover;
+   
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
     place-items: center;
     padding: 54px;
 

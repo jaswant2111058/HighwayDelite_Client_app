@@ -7,8 +7,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "sonner";
 
 //pages
-const Login = lazy(() => import("./pages/Login"));
-const ProtectedLayout = lazy(() => import("./components/ProtectedLayout"));
+const Home = lazy(() => import("./pages/Home"));
+// const ProtectedLayout = lazy(() => import("./components/ProtectedLayout"));
 
 function App() {
   return (
@@ -28,8 +28,8 @@ function App() {
         }
       >
         <Routes>
-          <Route path="/*" element={<ProtectedLayout />} />
-          <Route path="login" element={<Login />} />
+          {/* <Route path="/*" element={<ProtectedLayout />} /> */}
+          <Route path="Home" element={<Home />} />
         </Routes>
       </Suspense>
       {/* Toast */}

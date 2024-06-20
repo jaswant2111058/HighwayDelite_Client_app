@@ -1,0 +1,22 @@
+@import '../../font-styles.scss';
+@import '../../variables.scss';
+
+.Signin-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    width: 85px;
+    height: 50px;
+
+    .sign {
+        @include heading-2;
+        color: $primary-blue;
+        
+    }
+
+    .in {
+        @include heading-2;
+        color: $error;
+        
+    }
+}

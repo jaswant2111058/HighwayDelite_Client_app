@@ -1,0 +1,58 @@
+@import '../../font-styles.scss';
+@import '../../variables.scss';
+
+.home-containermain {
+    height: 100vh;
+    padding-top: 30px;
+
+    &__heading {
+        @include heading-1;
+        color: $dark-black;
+        margin-left: 13vw;
+        margin-bottom: 30px;
+    }
+}
+
+
+.home-container {
+
+
+    display: flex;
+    justify-content: space-around;
+
+
+    &__left {
+        grid-column: span 6;
+        position: relative;
+
+        &__img {
+            height: 35vw;
+            width: 35vw;
+        }
+
+        &__btn {
+            position: absolute;
+            right: 60px;
+            top: 45px;
+            cursor: pointer;
+        }
+    }
+
+    &__right {
+        grid-column: span 6;
+        position: relative;
+
+        &__img {
+            height: 35vw;
+            width: 35vw;
+        }
+
+        &__btn {
+            position: absolute;
+            right: 60px;
+            top: 45px;
+            cursor: pointer;
+        }
+    }
+
+}

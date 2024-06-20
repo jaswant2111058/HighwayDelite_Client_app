@@ -5,33 +5,19 @@
 $fallbackFontsSeq: "Inter", sans-serif;
 $logoFontsSeq: "Comfortaa", sans-serif;
 
-// follow the figma text and use the mixins respectively
-@mixin xen-font {
-  font-family: $logoFontsSeq;
-  line-height: 72px;
-  font-weight: 600;
-  font-size: 32px;
-}
-
-@mixin xen-font2 {
-  font-family: $logoFontsSeq;
-  line-height: 32px;
-  font-weight: 600;
-  font-size: 24px;
-}
 
 @mixin heading-1 {
   font-family: $fallbackFontsSeq;
   line-height: 60px;
   font-weight: 700;
-  font-size: 44px;
+  font-size: 55px;
 }
 
 @mixin heading-2 {
   font-family: $fallbackFontsSeq;
   line-height: 28px;
   font-weight: 700;
-  font-size: 24px;
+  font-size: 35px;
 }
 
 @mixin heading-3 {
