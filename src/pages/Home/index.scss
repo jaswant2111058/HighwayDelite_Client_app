@@ -4,6 +4,7 @@
 .home-containermain {
     height: 100vh;
     padding-top: 30px;
+    background-color: #E6E6E6;
 
     &__heading {
         @include heading-1;

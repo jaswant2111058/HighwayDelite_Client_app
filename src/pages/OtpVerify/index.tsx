@@ -19,7 +19,7 @@ const OtpVerify: FC = () => {
                         <FormHeader title={"Let us verify you"} />
                     </div>
                 </div>
-                <form className="singnin-container__right__otp" >
+                <div className="singnin-container__right__otp" >
 
                     <OtpComponent
                         length={6}
@@ -32,7 +32,7 @@ const OtpVerify: FC = () => {
                         isLoading={false}
                     />
 
-                </form>
+                </div>
             </div>
         </div>
 

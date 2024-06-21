@@ -1,7 +1,6 @@
-import { FC } from "react";
 import "./index.scss";
 
-const FormHeader: FC = ({ title }: any) => {
+const FormHeader = ({ title }: any) => {
 
     return (
         <div className="Header-container">

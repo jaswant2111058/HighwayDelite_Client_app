@@ -2,21 +2,14 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import Toast from "../components/Toast";
 import {
-  changePasswordService,
-  forgotPasswordService,
-  getUserService,
-  IOtp,
-  IUpdateuser,
+  verifyOtpService,
   loginService,
-  sendOtpService,
-  updateUserService,
-  updateUserProfileImageService,
-  removeUserProfileImageService,
+  signUpService,
 } from "../services/authServices";
-import { STATUS, TOAST_MESSAGES } from "../utils/constants";
+import { STATUS } from "../utils/constants";
 
 export interface ILogin {
-  login_id: string;
+  email: string;
   password: string;
 }
 
@@ -27,11 +20,8 @@ export interface IAuthStore {
   error?: object;
   user?: any;
   login?: any;
-  logout?: any;
-  updateUser?: any;
-  updateUserProfileImage: any;
-  removeUserProfileImage: any;
-  isLoading2?: any;
+  signup?: any;
+  verifyOtp?: any;
 }
 
 export interface IForgotPasswordStore {
@@ -58,27 +48,23 @@ export const useAuthStore = create(
       isLoading2: false,
       error: null,
       user: null,
-      login: async ({ login_id, password }: ILogin) => {
+      login: async ({ email, password }: ILogin) => {
         set({ isLoading: true, error: null });
         try {
-          const { data } = await loginService({ login_id, password });
-          if (data.message === "Success") {
+          const { data } = await loginService({ email, password });
+          if (data) {
             set({
-              accessToken: data.data.access_token,
-              refreshToken: data.data.refresh_token,
+              accessToken: data.data.token,
             });
-            const { data: userDetails } = await getUserService();
-            if (userDetails) {
-              set({
-                isLoading: false,
-                error: null,
-                user: {
-                  name: userDetails.full_name,
-                  email: userDetails.email,
-                  profile_image_url: userDetails.profile_image_url,
-                },
-              });
-            }
+
+            set({
+              isLoading: false,
+              error: null,
+              user: {
+                data
+              },
+            });
+            Toast(STATUS.SUCCESS, "Login successfull");
           }
         } catch (error: any) {
           set({
@@ -86,30 +72,26 @@ export const useAuthStore = create(
             error: error,
             user: null,
             accessToken: null,
-            refreshToken: null,
           });
           Toast(STATUS.ERROR, error.response.data.message);
         }
       },
-      updateUser: async ({ full_name, email }: IUpdateuser) => {
+      signup: async ({ first_name, last_name, email, password }: any) => {
         try {
           set({ isLoading: true, error: null });
-          const { data } = await updateUserService({ full_name, email });
-          if (data.message === TOAST_MESSAGES.PROFILE_UPDATED) {
-            const { data: userDetails } = await getUserService();
-            if (userDetails) {
-              set({
-                isLoading: false,
-                error: null,
-                user: {
-                  name: userDetails.full_name,
-                  email: userDetails.email,
-                  profile_image_url: userDetails.profile_image_url,
-                },
-              });
-              return userDetails;
-            }
-          }
+          const { data } = await signUpService({ first_name, last_name, email, password });
+          Toast(STATUS.SUCCESS, `Otp send successfull to ${email}`);
+          set({
+            isLoading: false,
+            error: null,
+            user: {
+              first_name,
+              last_name,
+              email
+            },
+          });
+          return data;
+
         } catch (error: any) {
           set({
             isLoading: false,
@@ -118,59 +100,18 @@ export const useAuthStore = create(
           Toast(STATUS.ERROR, error.response.data.message);
         }
       },
-      updateUserProfileImage: async (file: any) => {
+      verifyOtp: async ({ email, otp }: any) => {
         set({ isLoading2: true, error: null });
-        const res = await updateUserProfileImageService(file);
+        const res = await verifyOtpService({ email, otp });
         if (res) {
-          const { data: userDetails } = await getUserService();
-          if (userDetails) {
-            set({
-              isLoading2: false,
-              error: null,
-              user: {
-                name: userDetails.full_name,
-                email: userDetails.email,
-                profile_image_url: userDetails.profile_image_url,
-              },
-            });
-            Toast(STATUS.SUCCESS, "Profile image added successfully");
-            return userDetails.profile_image_url;
-          }
+
+          set({
+            isLoading2: false,
+            error: null,
+          });
+          Toast(STATUS.SUCCESS, "Opt verify successfully");
+          return res;
         }
-      },
-      removeUserProfileImage: async () => {
-        set({ isLoading2: true, error: null });
-        const { data } = await removeUserProfileImageService();
-        if (data) {
-          const { data: userDetails } = await getUserService();
-          if (userDetails) {
-            set({
-              isLoading2: false,
-              error: null,
-              user: {
-                name: userDetails.full_name,
-                email: userDetails.email,
-                profile_image_url: userDetails.profile_image_url,
-              },
-            });
-          }
-        }
-        Toast(STATUS.SUCCESS, "Profile Image Removed Succesful");
-        return null;
-      },
-      logout: async () => {
-        set({
-          isLoading: false,
-          error: null,
-          user: null,
-          accessToken: null,
-          refreshToken: null,
-          isLoading2: false,
-        });
-        setTimeout(() => {
-          localStorage.clear();
-          sessionStorage.clear();
-        }, 1000);
       },
     }),
     {
@@ -179,253 +120,3 @@ export const useAuthStore = create(
     },
   ),
 );
-
-export const useForgotPasswordStore = create((set, get) => ({
-  login_id: null,
-  sendForgotPasswordEmailStatus: false,
-  sendOtpVerificationStatus: false,
-  createNewPasswordStatus: false,
-  otp: null,
-  token: null,
-  isLoading: false,
-  error: null,
-
-  sendForgotPasswordEmail: async (login_id: string) => {
-    console.log(get());
-
-    set({ isLoading: true, error: null });
-    try {
-      const { data } = await forgotPasswordService(login_id);
-      if (data.message === "OTP sent successfully") {
-        set({
-          isLoading: false,
-          login_id: login_id,
-          error: null,
-          sendForgotPasswordEmailStatus: true,
-        });
-        Toast(STATUS.SUCCESS, data.message);
-      }
-    } catch (error: any) {
-      set({
-        isLoading: false,
-        error: error,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
-        sendForgotPasswordEmailStatus: false,
-      });
-      Toast(STATUS.ERROR, error.response.data.message);
-    }
-  },
-
-  sendOtp: async ({ login_id, otp }: IOtp) => {
-    set({ isLoading: true, error: null, sendOtpVerificationStatus: false });
-    try {
-      const { data } = await sendOtpService({ login_id, otp });
-      if (data?.token) {
-        set({
-          isLoading: false,
-          login_id: login_id,
-          error: null,
-          token: data?.token,
-          sendForgotPasswordEmailStatus: false,
-          sendOtpVerificationStatus: true,
-        });
-        Toast(STATUS.SUCCESS, data.message);
-      }
-    } catch (error: any) {
-      console.log(error, "error");
-
-      set({
-        login_id: null,
-        sendForgotPasswordEmailStatus: false,
-        sendOtpVerificationStatus: false,
-        otp: null,
-        token: null,
-        isLoading: false,
-        error: null,
-      });
-      Toast(STATUS.ERROR, error.response.data.message);
-    }
-  },
-
-  createNewPassword: async ({ token, newPassword }: any) => {
-    set({ isLoading: true, error: null, sendOtpVerificationStatus: false });
-    try {
-      if (newPassword.password !== newPassword.confirmPassword) {
-        set({
-          login_id: null,
-          sendForgotPasswordEmailStatus: false,
-          sendOtpVerificationStatus: false,
-          otp: null,
-          isLoading: false,
-          error: null,
-        });
-        Toast(STATUS.ERROR, TOAST_MESSAGES.PASSWORD_NOT_MATCHING);
-      } else {
-        const { data } = await changePasswordService({
-          token,
-          new_password: newPassword.password,
-        });
-
-        if (data.message === "password successfully changed!") {
-          set({
-            createNewPasswordStatus: true,
-            token: null,
-            isLoading: false,
-            otp: null,
-            sendForgotPasswordEmailStatus: false,
-            sendOtpVerificationStatus: false,
-            error: null,
-          });
-          Toast(STATUS.SUCCESS, TOAST_MESSAGES.PASSWORD_CHANGED);
-        }
-      }
-    } catch (error: any) {
-      set({
-        login_id: null,
-        sendForgotPasswordEmailStatus: false,
-        sendOtpVerificationStatus: false,
-        otp: null,
-        token: null,
-        isLoading: false,
-        error: null,
-      });
-    }
-  },
-
-  removeToken: async () => {
-    set({
-      login_id: null,
-      sendForgotPasswordEmailStatus: false,
-      sendOtpVerificationStatus: false,
-      createNewPasswordStatus: false,
-      otp: null,
-      token: null,
-      isLoading: false,
-      error: null,
-    });
-  },
-}));
-
-export const userEdits = create((set) => ({
-  login_id: null,
-  isFileSelected: false,
-  isImageSet: false,
-  token: null,
-  isLoading: false,
-  error: null,
-
-  sendForgotPasswordEmail: async (login_id: string) => {
-    set({ isLoading: true, error: null });
-    try {
-      const { data } = await forgotPasswordService(login_id);
-      if (data.message === "OTP sent successfully!") {
-        set({
-          isLoading: false,
-          login_id: login_id,
-          error: null,
-          sendForgotPasswordEmailStatus: true,
-        });
-        Toast(STATUS.SUCCESS, data.message);
-      }
-    } catch (error: any) {
-      set({
-        isLoading: false,
-        error: error,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
-        sendForgotPasswordEmailStatus: false,
-      });
-      Toast(STATUS.ERROR, error.response.data.message);
-    }
-  },
-
-  sendOtp: async ({ login_id, otp }: IOtp) => {
-    set({ isLoading: true, error: null, sendOtpVerificationStatus: false });
-    try {
-      const { data } = await sendOtpService({ login_id, otp });
-      if (data?.token) {
-        set({
-          isLoading: false,
-          login_id: login_id,
-          error: null,
-          token: data?.token,
-          sendForgotPasswordEmailStatus: false,
-          sendOtpVerificationStatus: true,
-        });
-        Toast(STATUS.SUCCESS, data.message);
-      }
-    } catch (error: any) {
-      set({
-        login_id: null,
-        sendForgotPasswordEmailStatus: false,
-        sendOtpVerificationStatus: false,
-        otp: null,
-        token: null,
-        isLoading: false,
-        error: null,
-      });
-      Toast(STATUS.ERROR, error.response.data.message);
-    }
-  },
-
-  createNewPassword: async ({ token, newPassword }: any) => {
-    set({ isLoading: true, error: null, sendOtpVerificationStatus: false });
-    try {
-      if (newPassword.password !== newPassword.confirmPassword) {
-        set({
-          login_id: null,
-          sendForgotPasswordEmailStatus: false,
-          sendOtpVerificationStatus: false,
-          otp: null,
-          isLoading: false,
-          error: null,
-        });
-        Toast(STATUS.ERROR, TOAST_MESSAGES.PASSWORD_NOT_MATCHING);
-      } else {
-        const { data } = await changePasswordService({
-          token,
-          new_password: newPassword.password,
-        });
-
-        if (data.message === "password successfully changed!") {
-          set({
-            createNewPasswordStatus: true,
-            token: null,
-            isLoading: false,
-            otp: null,
-            sendForgotPasswordEmailStatus: false,
-            sendOtpVerificationStatus: false,
-            error: null,
-          });
-          Toast(STATUS.SUCCESS, TOAST_MESSAGES.PASSWORD_CHANGED);
-        }
-      }
-    } catch (error: any) {
-      set({
-        login_id: null,
-        sendForgotPasswordEmailStatus: false,
-        sendOtpVerificationStatus: false,
-        otp: null,
-        token: null,
-        isLoading: false,
-        error: null,
-      });
-    }
-  },
-
-  removeToken: async () => {
-    set({
-      login_id: null,
-      sendForgotPasswordEmailStatus: false,
-      sendOtpVerificationStatus: false,
-      createNewPasswordStatus: false,
-      otp: null,
-      token: null,
-      isLoading: false,
-      error: null,
-    });
-  },
-}));

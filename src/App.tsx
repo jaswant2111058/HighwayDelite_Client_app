@@ -31,8 +31,8 @@ function App() {
         }
       >
         <Routes>
-          <Route path="/*" element={<SignUp />} />
-          <Route path="Home" element={<Home />} />
+          <Route path="/*" element={<Home />} />
+          <Route path="signup" element={<SignUp />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="otpverify" element={<OtpVerify />} />
         </Routes>

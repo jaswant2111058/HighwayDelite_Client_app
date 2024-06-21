@@ -1,19 +1,24 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "./index.scss";
-import { SignUPUiBtn } from "../../components/SignUI";
+import { SignInUiBtn } from "../../components/SignUI";
 import FormHeader from "../../components/FormHeader";
 import InputField from "../../components/InputField";
 import InteractionButton from "../../components/InteractionButton";
 import { IButtonType } from "../../common/interfaces/common.interface";
+import { useNavigate } from "react-router-dom";
 
 
 const SignIn: FC = () => {
+    const navigate = useNavigate()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [showPassword1, setShowPassword1] = useState(false)
 
     return (
 
         <div className="singnin-container">
             <div className="singnin-container__left">
-                <SignUPUiBtn />
+                <SignInUiBtn />
             </div>
             <div className="singnin-container__right">
                 <div className="singnin-container__right__form-header">
@@ -22,25 +27,29 @@ const SignIn: FC = () => {
                     </div>
 
                 </div>
-                <form>
+                <div>
 
                     <InputField
                         type="text"
-                        placeholder="Enter Email"
+                        placeholder="Email"
                         onClickIcon={() => { }}
                         iconRight={null}
-                        value={""}
-                        onChange={(e) => { console.log(e.targate.value) }}
+                        value={email}
+                        onChange={(e) => { setEmail(e.targate.value) }}
                     />
                     <InputField
-                        type="text"
-                        placeholder="Enter Email"
-                        onClickIcon={() => { }}
-                        iconRight={null}
-                        value={""}
-                        onChange={(e) => { console.log(e.targate.value) }}
+                        type={showPassword1 ? "text" : "password"}
+                        placeholder="Password"
+                        onClickIcon={() => {
+                            setShowPassword1((prev) => !prev);
+                        }}
+                        iconRight={showPassword1 ? "showPassword" : "hidePassword"}
+                        value={password}
+                        onChange={(e) => {
+                            setPassword(e.target.value); // Corrected spelling of 'target'
+                        }}
                     />
-                    
+
                     <InteractionButton
                         value="Sign In"
                         onClick={() => { }}
@@ -50,13 +59,13 @@ const SignIn: FC = () => {
                     />
                     <InteractionButton
                         value="Sign Up"
-                        onClick={() => { }}
+                        onClick={() => { navigate("/signup") }}
                         className="continue-btn"
                         isLoading={false}
                         type={IButtonType.LIGHT}
                     />
 
-                </form>
+                </div>
             </div>
         </div>
 
