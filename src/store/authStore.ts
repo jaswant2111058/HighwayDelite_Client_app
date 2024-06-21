@@ -22,6 +22,7 @@ export interface IAuthStore {
   user?: any;
   login?: any;
   signup?: any;
+  signin?: any;
   verifyOtp?: any;
   reSendOtp?: any;
 }
@@ -50,13 +51,13 @@ export const useAuthStore = create(
       isLoading2: false,
       error: null,
       user: null,
-      login: async ({ email, password }: ILogin) => {
+      signin: async ({ email, password }: ILogin) => {
         set({ isLoading: true, error: null });
         try {
           const { data } = await loginService({ email, password });
           if (data) {
             set({
-              accessToken: data.data.token,
+              accessToken: data.token,
             });
 
             set({
@@ -67,6 +68,7 @@ export const useAuthStore = create(
               },
             });
             Toast(STATUS.SUCCESS, "Login successfull");
+            return data
           }
         } catch (error: any) {
           set({
@@ -75,7 +77,7 @@ export const useAuthStore = create(
             user: null,
             accessToken: null,
           });
-          Toast(STATUS.ERROR, error.response.data.message);
+          Toast(STATUS.ERROR, "Email or password is incorrect");
         }
       },
       signup: async ({ first_name, last_name, email, password }: any) => {
@@ -120,13 +122,13 @@ export const useAuthStore = create(
             isLoading: false,
             error: error,
           });
-          Toast(STATUS.ERROR, error.response.data.message);
+          Toast(STATUS.ERROR, "incorrect otp");
         }
       },
-      reSendOtp: async ({ email}: any) => {
+      reSendOtp: async ({ email }: any) => {
         try {
           set({ isLoading: true, error: null });
-          const res = await reSendOtpService({ email});
+          const res = await reSendOtpService({ email });
           if (res) {
             set({
               isLoading: false,
@@ -145,7 +147,6 @@ export const useAuthStore = create(
           Toast(STATUS.ERROR, error.response.data.message);
         }
       }
-
     }),
     {
       name: "auth-storage",

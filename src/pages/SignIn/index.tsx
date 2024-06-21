@@ -6,6 +6,9 @@ import InputField from "../../components/InputField";
 import InteractionButton from "../../components/InteractionButton";
 import { IButtonType } from "../../common/interfaces/common.interface";
 import { useNavigate } from "react-router-dom";
+import { useAuthStore, IAuthStore } from "../../store/authStore";
+import Toast from "../../components/Toast";
+import { STATUS } from "../../utils/constants";
 
 
 const SignIn: FC = () => {
@@ -13,6 +16,21 @@ const SignIn: FC = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showPassword1, setShowPassword1] = useState(false)
+    const { signin, isLoading } = useAuthStore() as IAuthStore
+
+    const handelSignIn = async () => {
+
+        if (!email || !password) {
+            Toast(STATUS.ERROR, "All fields are required")
+            return;
+        }
+        const res = await signin({ email, password })
+        if (res) {
+            Toast(STATUS.SUCCESS, "User logged in successfuly")
+            navigate("/")
+        }
+    }
+
 
     return (
 
@@ -35,7 +53,7 @@ const SignIn: FC = () => {
                         onClickIcon={() => { }}
                         iconRight={null}
                         value={email}
-                        onChange={(e) => { setEmail(e.targate.value) }}
+                        onChange={(e) => { setEmail(e.target.value) }}
                     />
                     <InputField
                         type={showPassword1 ? "text" : "password"}
@@ -52,9 +70,9 @@ const SignIn: FC = () => {
 
                     <InteractionButton
                         value="Sign In"
-                        onClick={() => { }}
+                        onClick={handelSignIn}
                         className="continue-btn"
-                        isLoading={false}
+                        isLoading={isLoading}
                         type={IButtonType.DARK}
                     />
                     <InteractionButton
