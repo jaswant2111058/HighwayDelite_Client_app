@@ -6,7 +6,7 @@ This is a simple React application built using Vite and Zustand. The app consist
 
 The app has been deployed and is accessible at the following link:
 
-[Deployed App](https://your-deployment-link.com)
+[Deployed App](https://highwaydeliteclientapp.onrender.com)
 
 ## Table of Contents
 
