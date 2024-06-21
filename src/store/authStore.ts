@@ -5,6 +5,7 @@ import {
   verifyOtpService,
   loginService,
   signUpService,
+  reSendOtpService
 } from "../services/authServices";
 import { STATUS } from "../utils/constants";
 
@@ -16,12 +17,13 @@ export interface ILogin {
 export interface IAuthStore {
   accessToken?: string;
   refreshToken?: string;
-  isLoading?: boolean;
+  isLoading?: any;
   error?: object;
   user?: any;
   login?: any;
   signup?: any;
   verifyOtp?: any;
+  reSendOtp?: any;
 }
 
 export interface IForgotPasswordStore {
@@ -101,18 +103,49 @@ export const useAuthStore = create(
         }
       },
       verifyOtp: async ({ email, otp }: any) => {
-        set({ isLoading2: true, error: null });
-        const res = await verifyOtpService({ email, otp });
-        if (res) {
-
+        try {
+          set({ isLoading: true, error: null });
+          const res = await verifyOtpService({ email, otp });
+          if (res) {
+            set({
+              isLoading: false,
+              error: null,
+            });
+            Toast(STATUS.SUCCESS, "Opt verify successfully");
+            return res;
+          }
+        }
+        catch (error: any) {
           set({
-            isLoading2: false,
-            error: null,
+            isLoading: false,
+            error: error,
           });
-          Toast(STATUS.SUCCESS, "Opt verify successfully");
-          return res;
+          Toast(STATUS.ERROR, error.response.data.message);
         }
       },
+      reSendOtp: async ({ email}: any) => {
+        try {
+          set({ isLoading: true, error: null });
+          const res = await reSendOtpService({ email});
+          if (res) {
+            set({
+              isLoading: false,
+              error: null,
+            });
+            Toast(STATUS.SUCCESS, "Opt Send successfully");
+            return res;
+          }
+        }
+        catch (error: any) {
+          set({
+            isLoading: false,
+            error: error,
+          });
+          console.log(error)
+          Toast(STATUS.ERROR, error.response.data.message);
+        }
+      }
+
     }),
     {
       name: "auth-storage",

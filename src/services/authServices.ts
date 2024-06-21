@@ -1,7 +1,8 @@
 import {
   verifyOtp,
   login,
-  signup
+  signup,
+  resendotp
 
 } from "../utils/urlStrings";
 import HTTP_REQUEST from "./httpRequest";
@@ -53,6 +54,16 @@ const signUpService = async ({ first_name, last_name, email, password }: IUpdate
   return response;
 };
 
+const reSendOtpService = async ({ email }: any) => {
+
+  const url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}${resendotp}`;
+  const response: any = await HTTP_REQUEST.POST(url, {email});
+  console.log(response)
+  return response;
+
+}
+
+
 const refreshrefreshAccessTokenService = async (refresh_token: string) => {
   const data = { refresh_token };
   const url = `${import.meta.env.VITE_REACT_APP_BACKEND_URL}${"refreshToken"}`;
@@ -66,5 +77,6 @@ export {
   verifyOtpService,
   loginService,
   signUpService,
-  refreshrefreshAccessTokenService
+  refreshrefreshAccessTokenService,
+  reSendOtpService
 };

@@ -11,6 +11,8 @@ interface IOtpComponent {
   isLoading: boolean;
 }
 
+
+
 const OtpComponent = ({
   length,
   onSubmitOtp,
@@ -94,7 +96,7 @@ const OtpComponent = ({
       </div>
       <p className="otp__container-resend">
         Didn’t receive the OTP?{" "}
-        <strong onClick={() => forgotPasswordHandler()}>Resend OTP</strong>
+        <strong onClick={ () => forgotPasswordHandler()}>Resend OTP</strong>
       </p>
       <InteractionButton
         value="Verify"
