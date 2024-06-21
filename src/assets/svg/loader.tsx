@@ -5,7 +5,7 @@ interface LoaderProps {
   width?: number;
 }
 
-const Loader: FC<LoaderProps> = ({ height = 100, width = 100 }) => (
+const Loader: FC<LoaderProps> = ({ height = 35, width = 50 }) => (
   <svg
     version="1.1"
     id="L9"
@@ -20,7 +20,7 @@ const Loader: FC<LoaderProps> = ({ height = 100, width = 100 }) => (
     width={width}
   >
     <path
-      fill="#202f7d"
+      fill="#FFFFFF"
       d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50"
     >
       <animateTransform
