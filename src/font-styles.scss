@@ -5,12 +5,21 @@
 $fallbackFontsSeq: "Inter", sans-serif;
 $logoFontsSeq: "Comfortaa", sans-serif;
 
-
 @mixin heading-1 {
   font-family: $fallbackFontsSeq;
   line-height: 60px;
   font-weight: 700;
   font-size: 55px;
+
+  @media (max-width: 768px) {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 
 @mixin heading-2 {
@@ -18,6 +27,11 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 28px;
   font-weight: 700;
   font-size: 35px;
+
+  @media (max-width: 380px) {
+    font-size: 24px;
+    line-height: 28px;
+  }
 }
 
 @mixin heading-3 {
@@ -25,6 +39,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 24px;
   font-weight: 700;
   font-size: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 @mixin heading-5 {
@@ -32,6 +56,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 20px;
   font-weight: 600;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 
 @mixin heading-4 {
@@ -39,6 +73,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 20px;
   font-weight: 600;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 @mixin heading-6 {
@@ -46,6 +90,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 18px;
   font-weight: 600;
   font-size: 12px;
+
+  @media (max-width: 768px) {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    line-height: 14px;
+  }
 }
 
 @mixin body-2 {
@@ -53,6 +107,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 20px;
   font-weight: 400;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 @mixin body-3 {
@@ -60,6 +124,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 20px;
   font-weight: 500;
   font-size: 16px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }
 
 @mixin sub-heading-1 {
@@ -67,6 +141,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 40px;
   font-weight: 400;
   font-size: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
 }
 
 @mixin paragraph {
@@ -74,6 +158,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 16px;
   font-weight: 400;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 @mixin stat-font {
@@ -81,6 +175,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 34px;
   font-weight: 700;
   font-size: 28px;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    line-height: 28px;
+  }
 }
 
 @mixin percentage {
@@ -88,6 +192,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 16px;
   font-weight: 500;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 @mixin small-heads {
@@ -95,6 +209,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 16px;
   font-weight: 600;
   font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    line-height: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
 
 @mixin date-heading {
@@ -102,6 +226,16 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 18px;
   font-weight: 400;
   font-size: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+    line-height: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 8px;
+    line-height: 14px;
+  }
 }
 
 @mixin span-tag-heading {
@@ -109,4 +243,14 @@ $logoFontsSeq: "Comfortaa", sans-serif;
   line-height: 16px;
   font-weight: 600;
   font-size: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 9px;
+    line-height: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 8px;
+    line-height: 12px;
+  }
 }

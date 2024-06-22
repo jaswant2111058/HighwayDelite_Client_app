@@ -21,14 +21,18 @@
     display: flex;
     justify-content: space-around;
 
+    @media (max-width: 1050px) {
+       flex-wrap: wrap;
+    }
+
 
     &__left {
         grid-column: span 6;
         position: relative;
 
         &__img {
-            height: 35vw;
-            width: 35vw;
+            height: 350px;
+            width: 350px;
         }
 
         &__btn {
@@ -50,8 +54,8 @@
 
         &__btn {
             position: absolute;
-            right: 60px;
-            top: 45px;
+            right: 0;
+            top: 0;
             cursor: pointer;
         }
     }

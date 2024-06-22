@@ -17,7 +17,6 @@ const SignUp: FC = () => {
     const naviagte = useNavigate()
     const { signup } = useAuthStore() as IAuthStore
 
-
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
