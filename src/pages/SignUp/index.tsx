@@ -15,7 +15,7 @@ import { STATUS } from "../../utils/constants";
 const SignUp: FC = () => {
 
     const naviagte = useNavigate()
-    const { signup } = useAuthStore() as IAuthStore
+    const { signup, isLoading } = useAuthStore() as IAuthStore
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -81,19 +81,7 @@ const SignUp: FC = () => {
 
                 </div>
                 <div>
-                    {contactMode &&
-                        <>
-                            <div className="selectBox">
-                                <div className="selectBox__email"
-                                    onClick={() => {
-                                        setContactModeValue("Email")
-                                        setContactMode(false)
-                                    }}>
-                                    Email
-                                </div>
-                            </div>
-                        </>
-                    }
+
 
                     <InputField
                         type="text"
@@ -136,15 +124,32 @@ const SignUp: FC = () => {
                             setRePassword(e.target.value); // Corrected spelling of 'target'
                         }}
                     />
-                    <InputField
-                        type="text"
-                        placeholder="Contact Mode"
-                        onClickIcon={() => { setContactMode(prev => !prev) }}
-                        iconRight={!contactMode ? "chevron" : "upArrow"}
-                        value={contactModeValue}
-                        onChange={(e) => { console.log(e.target.value) }}
-                        disabled
-                    />
+                    <div style={{
+                        position:"relative"
+                    }}>
+                        <InputField
+                            type="text"
+                            placeholder="Contact Mode"
+                            onClickIcon={() => { setContactMode(prev => !prev) }}
+                            iconRight={!contactMode ? "chevron" : "upArrow"}
+                            value={contactModeValue}
+                            onChange={(e) => { console.log(e.target.value) }}
+                            disabled
+                        />
+                        {contactMode &&
+                            <>
+                                <div className="selectBox">
+                                    <div className="selectBox__email"
+                                        onClick={() => {
+                                            setContactModeValue("Email")
+                                            setContactMode(false)
+                                        }}>
+                                        Email
+                                    </div>
+                                </div>
+                            </>
+                        }
+                    </div>
                     <InputField
                         type="text"
                         placeholder="Enter Email"
@@ -159,7 +164,7 @@ const SignUp: FC = () => {
                         value="Sign Up"
                         onClick={handleSignUp}
                         className="continue-btn"
-                        isLoading={false}
+                        isLoading={isLoading}
                         type={IButtonType.DARK}
                     />
                 </div>

@@ -41,12 +41,16 @@
 
         @media (max-width: 980px) {
             width: 400px;
-            height: 550px;
+            height: 570px;
         }
 
         @media (max-width: 380px) {
             width: 320px;
             height: 550px;
+        }
+        @media (max-width: 278px) {
+            width: 320px;
+            height: 580px;
         }
 
         &__form-header {
@@ -91,8 +95,8 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: 215px;
-    right: 180px;
+    
+    right: 0;
     background-color: #E6E6E6;
     z-index: 2;
 
